@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App;
 use Illuminate\Http\Request;
 use Session;
 use App\Http\Requests;
@@ -11,23 +12,34 @@ class ItemsController extends Controller
 {
     public function create(Request $request)
     {
-        $type = $request->input('type');
+        if (! $request->ajax()) {
+            return app()->abort(404);
+        }
+
+        $type = array_keys($request->input())[0];
+
+        //$type = $request->input('type');
 
         if ($type == 'feature') {
-            return view('items.create.feature');
+            //return view('items.create.feature');
+            return view()->make('items.article_form', ['action' => 'ItemsController@feature'])->render();
         } elseif ($type == 'major') {
-            return view('items.create.major');
+            //return view('items.create.major');
+            return view()->make('items.article_form', ['action' => 'ItemsController@major'])->render();
         } elseif ($type == 'minor') {
-            return view('items.create.minor');
+            //return view('items.create.minor');
+            return view()->make('items.article_form', ['action' => 'ItemsController@minor'])->render();
         } elseif ($type == 'section_title') {
-            return view('items.create.section_title');
-//        } elseif ($type == 'line_break') {
-//            return redirect()->action('ItemsController@emptyLineBreak');
+            //return view('items.create.section_title');
+            return view()->make('items.section_title_form', ['action' => 'ItemsController@sectionTitle'])->render();
         } elseif ($type == 'quote') {
-            return view('items.create.quote');
+            return view()->make('items.quote_form', ['action' => 'ItemsController@quote'])->render();
+            //return view()->make('items.quote_form');
         } elseif ($type == 'date') {
-            return view('items.create.date');
+            //return view('items.create.date');
+            return view()->make('items.date_form', ['action' => 'ItemsController@date'])->render();
         }
+
     }
 
     public function date(Request $request)
@@ -46,14 +58,6 @@ class ItemsController extends Controller
             ->with(['template' => $template]);
 
     }
-
-//    public function emptyLineBreak()
-//    {
-//        $template = view()->file(app_path('Http/Templates/line-break.blade.php'));
-//
-//        return view('items.show')
-//            ->with(['template' => $template]);
-//    }
 
     public function quote(Request $request)
     {

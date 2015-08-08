@@ -3,36 +3,32 @@
 @section('content')
 <div class="row">
     <div class="col-xs-12">
-    <h1>Roundup helper</h1>
-        <form id="typeForm" action="http://rounduphelper.dev/item/create" method="GET">
-            <div class="form-group">
-                <label for="type">Make a</label>
-                <select class="form-control" name="type" id="articleType">
-                    <option value="feature">Article - Feature</option>
-                    <option value="major">Article - Major</option>
-                    <option value="minor">Article - Minor</option>
+        <h1 class="page-heading">Roundup helper</h1>
+    </div>
+    <div class="col-xs-offset-5 col-xs-2">
+        <div class="form-group">
+            <label for="type">Make a</label>
+            <select class="form-control" name="type" id="articleType">
+                <optgroup label="Articles">
+                    <option value="feature">Top story</option>
+                    <option value="major">Feature</option>
+                    <option value="minor">Brief</option>
+                </optgroup>
+                <optgroup label="Components">
                     <option value="quote">Quote</option>
                     <option value="section_title">Section Title</option>
-<!--                     <option value="line_break">Empty Line Break</option> -->
                     <option value="date">Date</option>
-                </select>
-            </div>
-            <input id="typeSubmit" class="btn btn-primary btn-large" type="submit" value="Get started" />
-        </form>
-    </div>
-</div>
-@stop
+                </optgroup>
+            </select>
+        </div>
+    </div> <!-- .col-xs-8 -->
+</div> <!-- .row -->
 
-@section('script')
-<script type="text/javascript" charset="utf-8">
-    $(document).ready(function() {
-        
-//        $('#typeSubmit').submit
-//            //evt.preventDefault();
-//            window.location.href = 
-//                '/item/create/' + document.getElementById('articleType').value;
-//        });
+<div class="row">
+    <div id="form" class="col-xs-8">
+    </div> <!-- .col-xs-12 -->
+    <div class="col-xs-4">
+    </div> <!-- .col-xs-4 -->
+</div> <!-- .row -->
 
-    });
-</script>
 @stop
