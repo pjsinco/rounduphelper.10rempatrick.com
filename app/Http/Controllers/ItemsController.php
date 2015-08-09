@@ -20,15 +20,20 @@ class ItemsController extends Controller
 
         //$type = $request->input('type');
 
-        if ($type == 'feature') {
+        if ($type == 'top_story') {
             //return view('items.create.feature');
-            return view()->make('items.article_form', ['action' => 'ItemsController@feature'])->render();
-        } elseif ($type == 'major') {
+            $htmlVersion = view()->file(
+                app_path('Http/Templates/top-story.blade.php')
+            )->render();
+
+            return view()->make('items.article_form', ['action' => 'ItemsController@feature', 'htmlVersion' => $htmlVersion])->render();
+//dd($view);
+        } elseif ($type == 'feature') {
             //return view('items.create.major');
-            return view()->make('items.article_form', ['action' => 'ItemsController@major'])->render();
-        } elseif ($type == 'minor') {
+            return view()->make('items.article_form', ['action' => 'ItemsController@feature'])->render();
+        } elseif ($type == 'brief') {
             //return view('items.create.minor');
-            return view()->make('items.article_form', ['action' => 'ItemsController@minor'])->render();
+            return view()->make('items.article_form', ['action' => 'ItemsController@brief'])->render();
         } elseif ($type == 'section_title') {
             //return view('items.create.section_title');
             return view()->make('items.section_title_form', ['action' => 'ItemsController@sectionTitle'])->render();
@@ -39,7 +44,6 @@ class ItemsController extends Controller
             //return view('items.create.date');
             return view()->make('items.date_form', ['action' => 'ItemsController@date'])->render();
         }
-
     }
 
     public function date(Request $request)
@@ -75,6 +79,22 @@ class ItemsController extends Controller
             ->with(['template' => $template]);
     }
 
+    public function topStory(Request $request) 
+    {
+        $input = $request->input();
+
+        $template = view()
+            ->file(
+                app_path('Http/Templates/top-story.blade.php'), 
+                $request->input()
+            );
+
+        Session::flash('data', $input);
+
+        return view('items.show')
+            ->with(['template' => $template]);
+    }
+
     public function feature(Request $request) 
     {
         $input = $request->input();
@@ -91,29 +111,13 @@ class ItemsController extends Controller
             ->with(['template' => $template]);
     }
 
-    public function major(Request $request) 
+    public function brief(Request $request) 
     {
         $input = $request->input();
 
         $template = view()
             ->file(
-                app_path('Http/Templates/article-major.blade.php'), 
-                $request->input()
-            );
-
-        Session::flash('data', $input);
-
-        return view('items.show')
-            ->with(['template' => $template]);
-    }
-
-    public function minor(Request $request) 
-    {
-        $input = $request->input();
-
-        $template = view()
-            ->file(
-                app_path('Http/Templates/article-minor.blade.php'), 
+                app_path('Http/Templates/brief.blade.php'), 
                 $request->input()
             );
 
