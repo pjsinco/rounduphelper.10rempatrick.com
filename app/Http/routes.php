@@ -16,10 +16,9 @@ Route::get('/', function () {
 });
 
 Route::get('item/create', 'ItemsController@create');
+Route::get('item/top-story', 'ItemsController@topStory');
 Route::get('item/feature', 'ItemsController@feature');
-Route::get('item/major', 'ItemsController@major');
-Route::get('item/minor', 'ItemsController@minor');
+Route::get('item/brief', 'ItemsController@brief');
 Route::get('item/section-title', 'ItemsController@sectionTitle');
-//Route::get('item/line-break', 'ItemsController@emptyLineBreak');
 Route::get('item/quote', 'ItemsController@quote');
 Route::get('item/date', 'ItemsController@date');
