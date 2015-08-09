@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 
 class ItemsController extends Controller
 {
+
     public function create(Request $request)
     {
         if (! $request->ajax()) {

@@ -8,6 +8,11 @@ $(document).ready(function() {
             $('#form').html(data);
         });
 
+        $.get('render/' + selected, function(data) {
+            //console.log(data);
+            $('#rendered').html(data);
+        });
+
 //        $('#form').load(
 //            'item/create', 
 //            selected,
