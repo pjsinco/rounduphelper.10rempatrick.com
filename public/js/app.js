@@ -2,11 +2,10 @@ $(document).ready(function() {
 
     $('select#articleType').change(function(e) {
         var selected = $(this).val();
-        console.log('select value: ' + $(this).val());
+        var form = $('form#selectArticleType').serialize();
 
-        $.get('item/create', selected, function(data, textStatus) {
-                console.log(textStatus);
-                console.log(data);
+        $.get('form', form, function(data, textStatus) {
+            $('#form').html(data);
         });
 
 //        $('#form').load(

@@ -22,3 +22,5 @@ Route::get('item/brief', 'ItemsController@brief');
 Route::get('item/section-title', 'ItemsController@sectionTitle');
 Route::get('item/quote', 'ItemsController@quote');
 Route::get('item/date', 'ItemsController@date');
+
+Route::get('form', 'FormsController@show');
