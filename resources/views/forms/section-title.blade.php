@@ -1,14 +1,9 @@
-        {!! Form::open(['method' => 'GET', 'action' => $action]) !!}
+        {{-- Form::open(['method' => 'GET', 'action' => $action]) --}}
 
             <div class="form-group">
                 {!! Form::label('section_title', 'Section title') !!}
-                {!! Form::text('section_title', null, ['class' => 'form-control']) !!}
+                {!! Form::text('section_title', null, ['class' => 'form-control', 'v-model' => 'section_title']) !!}
             </div>
 
-            <div class="form-group">
-                {!! Form::submit('Show HTML', ['class' => 'btn btn-primary form-control']) !!}
-            </div>
-
-
-        {!! Form::close() !!}
+        {{-- Form::close() --}}
 

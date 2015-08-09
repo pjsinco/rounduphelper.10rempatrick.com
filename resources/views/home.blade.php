@@ -26,7 +26,7 @@
     </div> <!-- .col-xs-8 -->
 </div> <!-- .row -->
 
-<div class="row">
+<div id="workspace" class="row">
     <div id="form" class="col-xs-8">
     </div> <!-- .col-xs-12 -->
     <div id="rendered" class="col-xs-4">
