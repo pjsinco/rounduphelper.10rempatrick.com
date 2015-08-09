@@ -10,9 +10,9 @@
             <label for="type">Make a</label>
             <select class="form-control" name="type" id="articleType">
                 <optgroup label="Articles">
-                    <option value="feature">Top story</option>
-                    <option value="major">Feature</option>
-                    <option value="minor">Brief</option>
+                    <option value="top_story">Top story</option>
+                    <option value="feature">Feature</option>
+                    <option value="brief">Brief</option>
                 </optgroup>
                 <optgroup label="Components">
                     <option value="quote">Quote</option>
