@@ -1,33 +1,73 @@
 $(document).ready(function() {
 
+    var vueData = {};
+
     var newVue = function(vueData) {
         new Vue({
-        
             el: '#workspace',
-        
             data: vueData,
-        
             methods: {
-        
+                copyHtml: function() {
+
+                    this.cloneRenderedVersion();
+                    
+                    var range = document.createRange();
+                    var selection = document.querySelector('#clone');
+                    range.selectNode(selection)
+                    window.getSelection().addRange(range);
+                    var successful = document.execCommand('copy');
+                    var msg = successful ? 'successful' : 'not successful';
+                    alert('copying was ' + msg);
+                },
+
+                cloneRenderedVersion: function() {
+
+                    var htmlVersion = document.getElementById('rendered');
+                    $('#clone').text(htmlVersion.innerHTML);
+                }
             },
-        
             ready: function() {
-        
-                console.log('hi from vue');
-        
+                console.log('ready');
+            },
+            attached: function() {
+                console.log('attached');
             }
-        
+        });
+    };
+
+    function getForm(form, selected) {
+        return $.ajax('form', {
+            data: form, 
+            async: false,
+            success: function(data) {
+                $('#form').html(data);
+                console.log('got form');
+            }
+        })
+    };
+
+    function getRendered(selected) {
+        return $.ajax('render/' + selected, {
+            async: false,
+            success: function(data) {
+                $('#rendered').html(data);
+                console.log('got rendered');
+            }
         });
     };
 
     $('select#articleType').change(function(e) {
+
         var selected = $(this).val();
-        var form = $('form#selectArticleType').serialize();
 
-        $.get('form', form, function(data, textStatus) {
-            $('#form').html(data);
+        // clear the cloned section
+        $('#workspace').fadeToggle(300, function() {
+            $('#clone').html('');
+            $('#rendered').html('');
+            $('#form').html('');
 
-            var vueData = {};
+            vueData = {};
+
             switch (selected) {
                 case 'top-story' | 'feature' | 'brief':
                     vueData = {
@@ -56,23 +96,18 @@ $(document).ready(function() {
                     };
                     break;
             }
-            newVue(vueData);
-        });
 
-        $.get('render/' + selected, function(data) {
-            //console.log(data);
-            $('#rendered').html(data);
-        });
-
-
-//        $('#form').load(
-//            'item/create', 
-//            selected,
-//            function() {
-//                console.log('loaded ' + selected);
-//            })
+            var form = $('form#selectArticleType').serialize();
     
-    })
+            var request = getForm(form, selected),
+                chained = getRendered(selected);
 
+            chained.done(function() {
+                newVue(vueData);
+                $('#workspace').delay(300).fadeToggle(300);
+            });
+
+        });
+    });
 
 });

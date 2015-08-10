@@ -27,10 +27,14 @@
 </div> <!-- .row -->
 
 <div id="workspace" class="row">
-    <div id="form" class="col-xs-8">
-    </div> <!-- .col-xs-12 -->
-    <div id="rendered" class="col-xs-4">
-    </div> <!-- .col-xs-4 -->
+    <div id="form" class="col-lg-7 col-md-12">
+    </div> <!-- #form -->
+    <div id="rendered" class="col-lg-5 col-md-12">
+    </div> <!-- #rendered -->
+    <div id="clone" style="position: absolute; top: -5000px; left: -5000px">
+    </div>
+    <p><button class="btn btn-primary btn-sm" id="copyHtml" v-on="click: copyHtml"><span class="glyphicon glyphicon-copy"></span> Copy HTML</button></p>
 </div> <!-- .row -->
+
 
 @stop
