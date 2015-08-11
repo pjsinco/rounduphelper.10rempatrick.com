@@ -59,65 +59,17 @@ $(document).ready(function() {
         });
     };
 
-    $('select#articleType').change(function(e) {
-        var selected = $(this).val();
-
+    function render() {
+        var selected = $('select#articleType').val();
+        var form = $('form#selectArticleType').serialize();
+        
         // clear the cloned section
         $('#workspace').fadeToggle(300, function() {
             $('#clone').text('');
             $('#highlight').html('');
             $('#form').html('');
 
-            vueData = {};
-
-            switch (selected) {
-                case 'top-story':
-                    vueData = {
-                        kicker: 'lorem kicker',
-                        headline: 'Lorem headline',
-                        excerpt: 'Lorem excerpt',
-                        link: '',
-                        imageUrl: 'http://placehold.it/480x320',
-                    };
-                    break;
-                 case 'feature':
-                    vueData = {
-                        kicker: 'lorem kicker',
-                        headline: 'Lorem headline',
-                        excerpt: 'Lorem excerpt',
-                        link: '',
-                        imageUrl: 'http://placehold.it/320x213',
-                    };
-                    break;
-                 case 'brief':
-                    vueData = {
-                        kicker: 'lorem kicker',
-                        headline: 'Lorem headline',
-                        excerpt: 'Lorem excerpt',
-                        link: '',
-                        imageUrl: 'http://placehold.it/134x89',
-                    };
-                    break;
-                 case 'quote' :
-                    vueData = {
-                        quote: 'Lorem quote',
-                        quoter: 'Lorem quoter',
-                        link: ''
-                    };
-                    break;
-                 case 'date' :
-                    vueData = {
-                        date: 'Lorem'
-                    };
-                    break;
-                 case 'section-title' :
-                    vueData = {
-                        section_title: 'More stories'
-                    };
-                    break;
-            }
-
-            var form = $('form#selectArticleType').serialize();
+            vueData = setVueData(selected);
     
             var request = getForm(form, selected),
                 chained = getRendered(selected);
@@ -128,13 +80,69 @@ $(document).ready(function() {
                 if ($('input').val() != 'More stories') {
                     $('input').val('');
                 }
-                $('#workspace').delay(300).fadeToggle(150);
+                $('#workspace').delay(300).fadeToggle(300);
             });
-
         });
-    });
+    };
+
+    function setVueData(selected) {
+        vueData = {};
+
+        switch (selected) {
+            case 'top-story':
+                vueData = {
+                    kicker: 'lorem kicker',
+                    headline: 'Lorem headline',
+                    excerpt: 'Lorem excerpt',
+                    link: '',
+                    imageUrl: 'http://placehold.it/480x320',
+                };
+                break;
+             case 'feature':
+                vueData = {
+                    kicker: 'lorem kicker',
+                    headline: 'Lorem headline',
+                    excerpt: 'Lorem excerpt',
+                    link: '',
+                    imageUrl: 'http://placehold.it/320x213',
+                };
+                break;
+             case 'brief':
+                vueData = {
+                    kicker: 'lorem kicker',
+                    headline: 'Lorem headline',
+                    excerpt: 'Lorem excerpt',
+                    link: '',
+                    imageUrl: 'http://placehold.it/134x89',
+                };
+                break;
+             case 'quote' :
+                vueData = {
+                    quote: 'Lorem quote',
+                    quoter: 'Lorem quoter',
+                    link: ''
+                };
+                break;
+             case 'date' :
+                vueData = {
+                    date: 'Lorem'
+                };
+                break;
+             case 'section-title' :
+                vueData = {
+                    section_title: 'More stories'
+                };
+                break;
+        }
+
+        return vueData;
+    };
+
+    $('select#articleType').change(render);
+
+    $('#workspace').on('click', '#refresh', render);
 
     // kick things off
-    $('select#articleType').trigger('change');
+    render();
 
 });
