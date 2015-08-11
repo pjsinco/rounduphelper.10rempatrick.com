@@ -12,7 +12,7 @@
                 <select class="form-control input-lg" name="type" id="articleType">
                     <optgroup label="Stories">
                         <option value="top-story">Top story</option>
-                        <option value="feature">Feature</option>
+                        <option value="feature" selected>Feature</option>
                         <option value="brief">Brief</option>
                     </optgroup>
                     <optgroup label="Other parts">

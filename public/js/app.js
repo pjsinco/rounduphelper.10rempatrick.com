@@ -1,13 +1,5 @@
 $(document).ready(function() {
 
-
-    function setClearOnFocus() {
-        $('input').focus(function() {
-            console.log('got focus');
-            $(this).val('');
-        });
-    }
-
     var vueData = {};
 
     var newVue = function(vueData) {
@@ -68,7 +60,6 @@ $(document).ready(function() {
     };
 
     $('select#articleType').change(function(e) {
-
         var selected = $(this).val();
 
         // clear the cloned section
@@ -143,6 +134,9 @@ $(document).ready(function() {
         });
     });
 
+    // kick things off
+    $('select#articleType').trigger('change');
+        
 });
 
 //# sourceMappingURL=app.js.map
