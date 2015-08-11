@@ -25,11 +25,15 @@
         </form>
     </div> <!-- .col-xs-8 -->
 </div> <!-- .row -->
+<hr />
+
 
 <div id="workspace" class="row">
-    <div id="form" class="col-lg-7 col-md-12">
+    <div id="form" class="col-lg-6 col-md-12">
     </div> <!-- #form -->
-    <div id="rendered" class="col-lg-5 col-md-12">
+    <div id="rendered" class="col-lg-6 col-md-12">
+        <div id="highlight">
+        </div>
     </div> <!-- #rendered -->
     <div id="clone" style="position: absolute; top: -5000px; left: -5000px">
     </div>

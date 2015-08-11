@@ -1,5 +1,13 @@
 $(document).ready(function() {
 
+
+    function setClearOnFocus() {
+        $('input').focus(function() {
+            console.log('got focus');
+            $(this).val('');
+        });
+    }
+
     var vueData = {};
 
     var newVue = function(vueData) {
@@ -17,12 +25,15 @@ $(document).ready(function() {
                     window.getSelection().addRange(range);
                     var successful = document.execCommand('copy');
                     var msg = successful ? 'successful' : 'not successful';
-                    alert('copying was ' + msg);
+                    console.log(msg);
+                    if (successful) {
+                        $('#highlight').effect('highlight', 'slow');
+                    }
                 },
 
                 cloneRenderedVersion: function() {
 
-                    var htmlVersion = document.getElementById('rendered');
+                    var htmlVersion = document.getElementById('highlight');
                     $('#clone').text(htmlVersion.innerHTML);
                 }
             },
@@ -50,7 +61,7 @@ $(document).ready(function() {
         return $.ajax('render/' + selected, {
             async: false,
             success: function(data) {
-                $('#rendered').html(data);
+                $('#highlight').html(data);
                 console.log('got rendered');
             }
         });
@@ -62,32 +73,50 @@ $(document).ready(function() {
 
         // clear the cloned section
         $('#workspace').fadeToggle(300, function() {
-            $('#clone').html('');
-            $('#rendered').html('');
+            $('#clone').text('');
+            $('#highlight').html('');
             $('#form').html('');
 
             vueData = {};
 
             switch (selected) {
-                case 'top-story' | 'feature' | 'brief':
+                case 'top-story':
                     vueData = {
-                        kicker: '',
-                        headline: '',
-                        excerpt: '',
+                        kicker: 'lorem kicker',
+                        headline: 'Lorem headline',
+                        excerpt: 'Lorem excerpt',
                         link: '',
-                        imageUrl: '',
+                        imageUrl: 'http://placehold.it/480x320',
+                    };
+                    break;
+                 case 'feature':
+                    vueData = {
+                        kicker: 'lorem kicker',
+                        headline: 'Lorem headline',
+                        excerpt: 'Lorem excerpt',
+                        link: '',
+                        imageUrl: 'http://placehold.it/320x213',
+                    };
+                    break;
+                 case 'brief':
+                    vueData = {
+                        kicker: 'lorem kicker',
+                        headline: 'Lorem headline',
+                        excerpt: 'Lorem excerpt',
+                        link: '',
+                        imageUrl: 'http://placehold.it/134x89',
                     };
                     break;
                  case 'quote' :
                     vueData = {
-                        quote: '',
-                        quoter: '',
+                        quote: 'Lorem quote',
+                        quoter: 'Lorem quoter',
                         link: ''
                     };
                     break;
                  case 'date' :
                     vueData = {
-                        date: ''
+                        date: 'Lorem'
                     };
                     break;
                  case 'section-title' :
@@ -104,7 +133,11 @@ $(document).ready(function() {
 
             chained.done(function() {
                 newVue(vueData);
-                $('#workspace').delay(300).fadeToggle(300);
+                // leave "More stories" in the input
+                if ($('input').val() != 'More stories') {
+                    $('input').val('');
+                }
+                $('#workspace').delay(300).fadeToggle(150);
             });
 
         });

@@ -2,23 +2,49 @@
 
 $brandcolor: #ef3f23;
 
+#rendered {
+    text-align: center;
+}
+
+#highlight {
+    display: inline-block;
+    padding-top: 1em;
+    padding-right: 2em;
+    padding-bottom: 1em;
+    padding-left: 2em;
+}
+
 .page-heading {
 
     margin-top: 1em;
     margin-bottom: 0;
     padding-bottom: 1em;
-    text-align: center;
+    text-align: left;
+    font-size: 1.5em;
+    font-weight: 200;
+    color: gray;
     line-height: 1;
     
     &:after {
         content: "";
-        width: 3em;
-        height: .1em;
+        position: absolute;
+        left: -8.4375em;
+        width: 14.3em;
+        height: 1px;
         display: block;
-        margin-top: 1em;
-        margin-left: auto;
-        margin-right: auto;
+        margin-top: .5em;
+        margin-left: 0;
+        
         background: $brandcolor;
     }
 
+}
+
+.btn:focus {
+    outline: none;
+}
+
+label {
+    font-weight: 400;
+    color: gray;
 }
