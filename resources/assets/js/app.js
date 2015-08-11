@@ -136,5 +136,5 @@ $(document).ready(function() {
 
     // kick things off
     $('select#articleType').trigger('change');
-        
+
 });

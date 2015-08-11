@@ -28,7 +28,7 @@
 <hr />
 
 
-<div id="workspace" class="row">
+<div class="row" id="workspace">
     <div id="form" class="col-lg-6 col-md-12">
     </div> <!-- #form -->
     <div id="rendered" class="col-lg-6 col-md-12">
@@ -37,7 +37,6 @@
     </div> <!-- #rendered -->
     <div id="clone" style="position: absolute; top: -5000px; left: -5000px">
     </div>
-    <p><button class="btn btn-primary btn-sm" id="copyHtml" v-on="click: copyHtml"><span class="glyphicon glyphicon-copy"></span> Copy HTML</button></p>
 </div> <!-- .row -->
 
 

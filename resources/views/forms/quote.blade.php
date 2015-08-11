@@ -16,5 +16,8 @@
                 {!! Form::text('link', null, ['class' => 'form-control', 'v-model' => 'link']) !!}
             </div>
 
+            <div class="form-group clearfix">
+                <button class="btn btn-primary pull-right" id="copyHtml" v-on="click: copyHtml"><span class="glyphicon glyphicon-copy"></span> Copy HTML</button>
+            </div>
         {{-- Form::close() --}}
 
