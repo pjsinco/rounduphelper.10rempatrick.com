@@ -25,6 +25,22 @@
                 {!! Form::text('imageUrl', null, ['class' => 'form-control', 'v-model' => 'imageUrl', 'debounce' => '500']) !!}
             </div>
 
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="rule_below" v-on="click: cloneRenderedVersion" v-model="ruleBelow"> Rule below
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="rule_above" v-on="click: cloneRenderedVersion" v-model="ruleAbove"> Rule above
+                    </label>
+                </div>
+            </div>
+
             
             <div class="form-group clearfix">
                 <div class="btn-group pull-right">

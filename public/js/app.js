@@ -23,6 +23,13 @@ $(document).ready(function() {
                     }
                 },
 
+                onClick: function() {
+                    console.log('onclick');
+                },
+                refreshClone: function() {
+
+                },
+
                 cloneRenderedVersion: function() {
 
                     var htmlVersion = document.getElementById('highlight');
@@ -105,6 +112,8 @@ $(document).ready(function() {
                     excerpt: 'Lorem excerpt',
                     link: '',
                     imageUrl: 'http://placehold.it/320x213',
+                    ruleBelow: true,
+                    ruleAbove: false,
                 };
                 break;
              case 'brief':
