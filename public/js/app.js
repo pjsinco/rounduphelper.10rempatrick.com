@@ -9,6 +9,7 @@ $(document).ready(function() {
             methods: {
                 copyHtml: function() {
 
+                    this.collapseSelection('clone');
                     this.cloneRenderedVersion();
                     
                     var range = document.createRange();
@@ -26,12 +27,15 @@ $(document).ready(function() {
                 onClick: function() {
                     console.log('onclick');
                 },
-                refreshClone: function() {
 
+                collapseSelection: function(elementId) {
+                    var elem = document.getElementById(elementId);
+                    if (window.getSelection()) {
+                        window.getSelection().collapse(elem, 0);
+                    }
                 },
 
                 cloneRenderedVersion: function() {
-
                     var htmlVersion = document.getElementById('highlight');
                     $('#clone').text(htmlVersion.innerHTML);
                 }
@@ -123,6 +127,8 @@ $(document).ready(function() {
                     excerpt: 'Lorem excerpt',
                     link: '',
                     imageUrl: 'http://placehold.it/134x89',
+                    ruleBelow: true,
+                    ruleAbove: false,
                 };
                 break;
              case 'quote' :

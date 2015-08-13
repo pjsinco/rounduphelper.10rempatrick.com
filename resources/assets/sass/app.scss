@@ -52,3 +52,7 @@ label {
 hr {
     border-top: 1px dashed #929292;
 }
+
+.checkbox-inline > label:last-child {
+    margin-left: 2em;
+}

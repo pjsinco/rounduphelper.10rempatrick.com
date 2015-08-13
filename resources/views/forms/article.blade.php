@@ -26,15 +26,10 @@
             </div>
 
             <div class="form-group">
-                <div class="checkbox">
+                <div class="checkbox-inline">
                     <label>
                         <input type="checkbox" name="rule_below" v-on="click: cloneRenderedVersion" v-model="ruleBelow"> Rule below
                     </label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="checkbox">
                     <label>
                         <input type="checkbox" name="rule_above" v-on="click: cloneRenderedVersion" v-model="ruleAbove"> Rule above
                     </label>
