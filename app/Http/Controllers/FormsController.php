@@ -21,17 +21,20 @@ class FormsController extends Controller
         switch ($type) {
             case 'top-story':
                 return view()->make('forms.article', [
-                    'action' => 'ItemsController@topStory'
+                    'action' => 'ItemsController@topStory',
+                    'ruleForm' => false,
                 ]);
                 break;
             case 'feature':
                 return view()->make('forms.article', [
-                    'action' => 'ItemsController@feature'
+                    'action' => 'ItemsController@feature',
+                    'ruleForm' => true,
                 ]);
                 break;
             case 'brief':
                 return view()->make('forms.article', [
-                    'action' => 'ItemsController@brief'
+                    'action' => 'ItemsController@brief',
+                    'ruleForm' => true,
                 ]);
                 break;
             case 'quote':

@@ -25,6 +25,7 @@
                 {!! Form::text('imageUrl', null, ['class' => 'form-control', 'v-model' => 'imageUrl', 'debounce' => '500']) !!}
             </div>
 
+            @if($ruleForm)
             <div class="form-group">
                 <div class="checkbox-inline">
                     <label>
@@ -35,6 +36,7 @@
                     </label>
                 </div>
             </div>
+            @endif()
 
             
             <div class="form-group clearfix">
