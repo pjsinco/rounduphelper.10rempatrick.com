@@ -19,17 +19,17 @@ $(document).ready(function() {
                     var msg = successful ? 'successful' : 'not successful';
                     console.log(msg);
                     if (successful) {
-                        $('#highlight').effect('highlight', 'slow');
+                        $('#highlight').effect('highlight', { color: 'ghostwhite' }, 'slow');
                     }
                 },
 
                 copyTextVersion: function(trigger) {
                     var clipboard = new Clipboard('#copyTextVersion', {
-                        //text: vueData.textVersion
                         text: this.textVersion
                     });
 
                     clipboard.on('success', function(e) {
+                        $('#highlight').effect('highlight', { color: 'azure' }, 'slow');
                         clipboard.destroy();
                     });
 
