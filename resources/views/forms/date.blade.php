@@ -6,8 +6,10 @@
             </div>
 
             <div class="form-group clearfix">
-                <button class="btn btn-primary pull-right" id="copyHtml" v-on="click: copyHtml"><span class="glyphicon glyphicon-copy"></span> Copy HTML</button>
-                <button class="btn btn-info" data-component="date" id="copyTextVersion" v-on="click: copyTextVersion"><span class="glyphicon glyphicon-copy"></span> Copy text</button>
+                <div class="btn-group pull-right">
+                    <button class="btn btn-primary" id="copyHtml" v-on="click: copyHtml"><span class="glyphicon glyphicon-copy"></span> Copy HTML</button>
+                    <button class="btn btn-info" id="copyTextVersion" data-component="date" v-on="click: copyTextVersion"><span class="glyphicon glyphicon-copy"></span> Copy text</button>
+                </div>
             </div>
 
         {{-- Form::close() --}}
