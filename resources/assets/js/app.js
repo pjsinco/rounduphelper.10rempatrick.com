@@ -19,7 +19,7 @@ $(document).ready(function() {
                     var msg = successful ? 'successful' : 'not successful';
                     console.log(msg);
                     if (successful) {
-                        $('#highlight').effect('highlight', { color: 'ghostwhite' }, 'slow');
+                        $('#highlight').effect('highlight', { color: 'aliceblue' }, 'slow');
                     }
                 },
 
