@@ -45,12 +45,12 @@ $(document).ready(function() {
                         case 'article':
                             return [
                                 vueData.kicker,
+                                vueData.headline.toUpperCase(),
                                 '------------------------------------' +
                                     '------------------------------------',
-                                vueData.headline.toUpperCase(),
                                 vueData.excerpt,
                                 vueData.link,
-                                '\n',
+                                '',
                             ].join('\n');
                             
                             break;
@@ -58,27 +58,30 @@ $(document).ready(function() {
                             return [
                                 'Most recent posts: ' + vueData.date,
                                 '(http://thedo.osteopathic.org)',
-                                '\n',
+                                '',
                             ].join('\n');
                             
                             break;
                         
                         case 'section-title':
                             return [
-                                vueData.section_title,
-                                '\n',
+                                vueData.section_title
+                                    .toUpperCase()
+                                    .split('')
+                                    .join(' '),
+                                '',
                             ].join('\n');
                             
                             break;
                         
                         case 'quote':
                             return [
-                                '----------------------',
+                                '\n',
                                 'Q U O T E D',
+                                '\n',
                                 vueData.quote,
                                 '--' + vueData.quoter,
                                 vueData.link,
-                                '\n'
                             ].join('\n');
                             
                             break;
