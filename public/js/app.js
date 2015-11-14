@@ -8,7 +8,6 @@ $(document).ready(function() {
             data: vueData,
             methods: {
                 copyHtml: function() {
-
                     this.collapseSelection('clone');
                     this.cloneRenderedVersion();
                     
@@ -20,7 +19,72 @@ $(document).ready(function() {
                     var msg = successful ? 'successful' : 'not successful';
                     console.log(msg);
                     if (successful) {
-                        $('#highlight').effect('highlight', 'slow');
+                        $('#highlight').effect('highlight', { color: 'ghostwhite' }, 'slow');
+                    }
+                },
+
+                copyTextVersion: function(trigger) {
+                    var clipboard = new Clipboard('#copyTextVersion', {
+                        text: this.textVersion
+                    });
+
+                    clipboard.on('success', function(e) {
+                        $('#highlight').effect('highlight', { color: 'azure' }, 'slow');
+                        clipboard.destroy();
+                    });
+
+
+                    clipboard.on('error', function(e) {
+                        clipboard.destroy();
+                    });
+                },
+
+                textVersion: function(trigger) {
+                    var component = trigger.dataset.component;
+                    switch (component) {
+                        case 'article':
+                            return [
+                                vueData.kicker,
+                                vueData.headline.toUpperCase(),
+                                '------------------------------------' +
+                                    '------------------------------------',
+                                vueData.excerpt,
+                                vueData.link,
+                                '',
+                            ].join('\n');
+                            
+                            break;
+                        case 'date':
+                            return [
+                                'Most recent posts: ' + vueData.date,
+                                '(http://thedo.osteopathic.org)',
+                                '',
+                            ].join('\n');
+                            
+                            break;
+                        
+                        case 'section-title':
+                            return [
+                                vueData.section_title
+                                    .toUpperCase()
+                                    .split('')
+                                    .join(' '),
+                                '',
+                            ].join('\n');
+                            
+                            break;
+                        
+                        case 'quote':
+                            return [
+                                '\n',
+                                'Q U O T E D',
+                                '\n',
+                                vueData.quote,
+                                '--' + vueData.quoter,
+                                vueData.link,
+                            ].join('\n');
+                            
+                            break;
                     }
                 },
 
@@ -135,17 +199,17 @@ $(document).ready(function() {
                 vueData = {
                     quote: 'Lorem quote',
                     quoter: 'Lorem quoter',
-                    link: ''
+                    link: '',
                 };
                 break;
              case 'date' :
                 vueData = {
-                    date: 'Lorem'
+                    date: 'Lorem',
                 };
                 break;
              case 'section-title' :
                 vueData = {
-                    section_title: 'More stories'
+                    section_title: 'More stories',
                 };
                 break;
         }
