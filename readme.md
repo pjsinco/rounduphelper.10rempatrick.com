@@ -26,3 +26,6 @@ php55 /usr/local/bin/composer.phar install
 ```
 ./node_modules/.bin/gulp 
 ```
+
+#####Sun Dec  6 06:41:00 2015 CST
+*  Reddit: [In case anyone else needs to add snow to a website this Christmas (we've been asked once already this year) we've created this plugin using canvas.](https://www.reddit.com/r/webdev/comments/3uze1q/in_case_anyone_else_needs_to_add_snow_to_a/)
