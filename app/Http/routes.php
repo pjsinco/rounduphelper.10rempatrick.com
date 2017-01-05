@@ -11,8 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
+Route::get('/', function() {
+  return view('home');
+});
+
+Route::get('/the-do', function () {
+    return view('thedo');
+});
+
+Route::get('/jaoa', function () {
+    return view('jaoa');
 });
 
 Route::get('item/{type}', 'ItemsController@show');
