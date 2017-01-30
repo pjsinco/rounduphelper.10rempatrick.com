@@ -11,7 +11,7 @@ class RendersController extends Controller
 {
     public function show($owner, $type)
     {
-        $template = 'renders.' . $owner . '.' . $type;
-        return view($template);
+        $templateName = 'renders.' . $owner . '.' . $type;
+        return view($templateName);
     }
 }

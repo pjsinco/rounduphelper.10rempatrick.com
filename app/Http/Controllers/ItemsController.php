@@ -20,41 +20,41 @@ class ItemsController extends Controller
           );
     }
 
-    public function create(Request $request)
-    {
-        if (! $request->ajax()) {
-            return app()->abort(404);
-        }
-
-        $type = array_keys($request->input())[0];
-
-        //$type = $request->input('type');
-
-        if ($type == 'top_story') {
-            //return view('items.create.feature');
-            $htmlVersion = view()->file(
-                app_path('Http/Templates/top-story.blade.php')
-            )->render();
-
-            return view()->make('items.article_form', ['action' => 'ItemsController@feature', 'htmlVersion' => $htmlVersion])->render();
-//dd($view);
-        } elseif ($type == 'feature') {
-            //return view('items.create.major');
-            return view()->make('items.article_form', ['action' => 'ItemsController@feature'])->render();
-        } elseif ($type == 'brief') {
-            //return view('items.create.minor');
-            return view()->make('items.article_form', ['action' => 'ItemsController@brief'])->render();
-        } elseif ($type == 'section_title') {
-            //return view('items.create.section_title');
-            return view()->make('items.section_title_form', ['action' => 'ItemsController@sectionTitle'])->render();
-        } elseif ($type == 'quote') {
-            return view()->make('items.quote_form', ['action' => 'ItemsController@quote'])->render();
-            //return view()->make('items.quote_form');
-        } elseif ($type == 'date') {
-            //return view('items.create.date');
-            return view()->make('items.date_form', ['action' => 'ItemsController@date'])->render();
-        }
-    }
+//    public function create(Request $request)
+//    {
+//        if (! $request->ajax()) {
+//            return app()->abort(404);
+//        }
+//
+//        $type = array_keys($request->input())[0];
+//
+//        //$type = $request->input('type');
+//
+//        if ($type == 'top_story') {
+//            //return view('items.create.feature');
+//            $htmlVersion = view()->file(
+//                app_path('Http/Templates/top-story.blade.php')
+//            )->render();
+//
+//            return view()->make('items.article_form', ['action' => 'ItemsController@feature', 'htmlVersion' => $htmlVersion])->render();
+////dd($view);
+//        } elseif ($type == 'feature') {
+//            //return view('items.create.major');
+//            return view()->make('items.article_form', ['action' => 'ItemsController@feature'])->render();
+//        } elseif ($type == 'brief') {
+//            //return view('items.create.minor');
+//            return view()->make('items.article_form', ['action' => 'ItemsController@brief'])->render();
+//        } elseif ($type == 'section_title') {
+//            //return view('items.create.section_title');
+//            return view()->make('items.section_title_form', ['action' => 'ItemsController@sectionTitle'])->render();
+//        } elseif ($type == 'quote') {
+//            return view()->make('items.quote_form', ['action' => 'ItemsController@quote'])->render();
+//            //return view()->make('items.quote_form');
+//        } elseif ($type == 'date') {
+//            //return view('items.create.date');
+//            return view()->make('items.date_form', ['action' => 'ItemsController@date'])->render();
+//        }
+//    }
 
     public function handle(Request $request)
     {
@@ -136,7 +136,7 @@ class ItemsController extends Controller
 
     public function jaoaArticle(Request $request)
     {
-      $input = $requets->input();
+      $input = $request->input();
 
       $template = $this->getViewTemplate('jaoa.article.blade.php', $request->input());
 

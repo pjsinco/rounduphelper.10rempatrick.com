@@ -1,3 +1,28 @@
+if (typeof Object.assign != 'function') {
+  Object.assign = function(target, varArgs) { // .length of function is 2
+    'use strict';
+    if (target == null) { // TypeError if undefined or null
+      throw new TypeError('Cannot convert undefined or null to object');
+    }
+
+    var to = Object(target);
+
+    for (var index = 1; index < arguments.length; index++) {
+      var nextSource = arguments[index];
+
+      if (nextSource != null) { // Skip over if undefined or null
+        for (var nextKey in nextSource) {
+          // Avoid bugs when hasOwnProperty is shadowed
+          if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+            to[nextKey] = nextSource[nextKey];
+          }
+        }
+      }
+    }
+    return to;
+  };
+}
+
 var colorMap = {
   purple: {
     full: '#a464c5',
@@ -48,12 +73,12 @@ var categoryColors = {
 
 $(document).ready(function() {
 
-
     var owner = window.location.pathname.substr(1);
 
     var vueData = {};
 
     var newVue = function(vueData) {
+
         new Vue({
             el: '#workspace',
             data: vueData,
@@ -139,6 +164,15 @@ $(document).ready(function() {
                     }
                 },
 
+                log: function(evt) {
+                  console.log(evt);
+                },
+
+                handleCategoryChange: function(evt) {
+                  var category = evt.targetVM.category;
+                  setArticleColors(category);
+                },
+
                 onClick: function() {
                     console.log('onclick');
                 },
@@ -202,14 +236,39 @@ $(document).ready(function() {
 
             chained.done(function() {
                 newVue(vueData);
-                // leave "More stories" in the input
-                if ($('input').val()) {
-                    $('input').val('');
-                }
+                clearInputs();
+                setArticleColors(vueData.category);
                 $('#workspace').delay(300).fadeToggle(300);
             });
         });
     };
+
+    function clearInputs() {
+      // leave "More stories" in the input
+      if ($('input').val() != 'More stories') {
+          $('input, textarea').val('');
+      }
+    }
+
+    function setArticleColors(category) {
+
+      var color = categoryColors[category];
+
+      $table = $('#categoryTable');
+    
+      $table
+        .attr('bgcolor', color.full)
+        .find('tr > td')
+          .css('background-color', color.full);
+
+      $table.find('table td').eq(1)
+        .attr('style', 
+              'border-top: 4px solid ' + color.tint + 
+                '; font-size: 0;');
+      
+      $('#articleTitle')
+        .attr('style', 'text-decoration: none; font-family: "Raleway", Helvetica, arial, sans-serif; font-weight: 500; font-size: 22px; line-height: 28px; color: ' + color.full + ';');
+    }
 
     function setVueData(selected) {
         vueData = {};
@@ -266,7 +325,7 @@ $(document).ready(function() {
              case 'jaoa-article' :
                 vueData = {
                   title: 'Lorem article title',
-                  category: 'reviews',
+                  category: 'Original Contributions',
                   authors: 'Lorem authors',
                   blurb: 'Lorem ipsum dolor blurb',
                   articleUrl: '',
