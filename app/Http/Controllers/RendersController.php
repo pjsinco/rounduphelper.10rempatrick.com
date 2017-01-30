@@ -9,8 +9,9 @@ use App\Http\Controllers\Controller;
 
 class RendersController extends Controller
 {
-    public function show($type)
+    public function show($owner, $type)
     {
-        return view('renders.' . $type);
+        $template = 'renders.' . $owner . '.' . $type;
+        return view($template);
     }
 }

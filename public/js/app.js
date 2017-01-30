@@ -1,4 +1,55 @@
+var colorMap = {
+  purple: {
+    full: '#a464c5',
+    tint: '#DBC1E8',
+    lightest: '',
+  },
+  red: {
+    full: '#f26046',
+    tint: '#FABFB5',
+    lightest: '#FDE9E6',
+  },
+  green: {
+    full: '#7abfb4',
+    tint: '#D7EBE8',
+    lightest: '',
+  },
+  blue: {
+    full: '#4e98da',
+    tint: '#B8D6F0',
+    lightest: '#E8F1FA',
+  },
+};
+
+var categoryColors = {
+  "Original Contributions": colorMap.purple,
+  "Reviews": colorMap.purple,
+  "Evidence-Based Clinical Reviews": colorMap.purple,
+  "Clinical Review": colorMap.purple,
+  "Clinical Practice": colorMap.purple,
+  "Brief Reports": colorMap.purple,
+  "Medical Education": colorMap.purple,
+  "Case Reports": colorMap.purple,
+  "Special Communication": colorMap.purple,
+  "Special Report": colorMap.green,
+  "Health Policy": colorMap.green,
+  "Still Relevant?":  colorMap.green,
+  "Editorials": colorMap.green,
+  "In My View": colorMap.green,
+  "Empathy in Medicine": colorMap.red,
+  "The Somatic Connection": colorMap.red,
+  "Clinical Images": colorMap.red,
+  "In Your Words": colorMap.red,
+  "Letters to the Editor": colorMap.green,
+  "SURF": colorMap.red,
+  "CME Quiz": colorMap.blue,
+  "Book Reviews": colorMap.red,
+};
+
 $(document).ready(function() {
+
+
+    var owner = window.location.pathname.substr(1);
 
     var vueData = {};
 
@@ -13,7 +64,7 @@ $(document).ready(function() {
                     
                     var range = document.createRange();
                     var selection = document.querySelector('#clone');
-                    range.selectNode(selection)
+                    range.selectNode(selection);
                     window.getSelection().addRange(range);
                     var successful = document.execCommand('copy');
                     var msg = successful ? 'successful' : 'not successful';
@@ -121,11 +172,11 @@ $(document).ready(function() {
                 $('#form').html(data);
                 console.log('got form');
             }
-        })
+        });
     };
 
     function getRendered(selected) {
-        return $.ajax('render/' + selected, {
+        return $.ajax('render/' + owner + '/' + selected, {
             async: false,
             success: function(data) {
                 $('#highlight').html(data);
@@ -152,7 +203,7 @@ $(document).ready(function() {
             chained.done(function() {
                 newVue(vueData);
                 // leave "More stories" in the input
-                if ($('input').val() != 'More stories') {
+                if ($('input').val()) {
                     $('input').val('');
                 }
                 $('#workspace').delay(300).fadeToggle(300);
@@ -210,6 +261,16 @@ $(document).ready(function() {
              case 'section-title' :
                 vueData = {
                     section_title: 'More stories',
+                };
+                break;
+             case 'jaoa-article' :
+                vueData = {
+                  title: 'Lorem article title',
+                  category: 'reviews',
+                  authors: 'Lorem authors',
+                  blurb: 'Lorem ipsum dolor blurb',
+                  articleUrl: '',
+                  imageUrl: '',
                 };
                 break;
         }

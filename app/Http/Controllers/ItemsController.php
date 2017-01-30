@@ -11,6 +11,15 @@ use App\Http\Controllers\Controller;
 class ItemsController extends Controller
 {
 
+    public function getViewTemplate($filename, $input = array())
+    {
+        return view()
+          ->file(
+              app_path('Http/Templates/' . $filename), 
+              $request->input()
+          );
+    }
+
     public function create(Request $request)
     {
         if (! $request->ajax()) {
@@ -47,15 +56,16 @@ class ItemsController extends Controller
         }
     }
 
+    public function handle(Request $request)
+    {
+
+    }
+
     public function date(Request $request)
     {
         $input = $request->input();
 
-        $template = view()
-            ->file(
-                app_path('Http/Templates/date.blade.php'), 
-                $request->input()
-            );
+        $template = $this->getViewTemplate('date.blade.php', $request->input());
 
         Session::flash('data', $input);
 
@@ -68,11 +78,7 @@ class ItemsController extends Controller
     {
         $input = $request->input();
 
-        $template = view()
-            ->file(
-                app_path('Http/Templates/quote.blade.php'), 
-                $request->input()
-            );
+        $template = $this->getViewTemplate('quote.blade.php', $request->input());
 
         Session::flash('data', $input);
 
@@ -84,11 +90,7 @@ class ItemsController extends Controller
     {
         $input = $request->input();
 
-        $template = view()
-            ->file(
-                app_path('Http/Templates/top-story.blade.php'), 
-                $request->input()
-            );
+        $template = $this->getViewTemplate('top-story.blade.php', $request->input());
 
         Session::flash('data', $input);
 
@@ -100,11 +102,7 @@ class ItemsController extends Controller
     {
         $input = $request->input();
 
-        $template = view()
-            ->file(
-                app_path('Http/Templates/feature.blade.php'), 
-                $request->input()
-            );
+        $template = $this->getViewTemplate('feature.blade.php', $request->input());
 
         Session::flash('data', $input);
 
@@ -116,11 +114,7 @@ class ItemsController extends Controller
     {
         $input = $request->input();
 
-        $template = view()
-            ->file(
-                app_path('Http/Templates/brief.blade.php'), 
-                $request->input()
-            );
+        $template = $this->getViewTemplate('brief.blade.php', $request->input());
 
         Session::flash('data', $input);
 
@@ -132,15 +126,23 @@ class ItemsController extends Controller
     {
         $input = $request->input();
 
-        $template = view()
-            ->file(
-                app_path('Http/Templates/section-title.blade.php'), 
-                $request->input()
-            );
+        $template = $this->getViewTemplate('section-title.blade.php', $request->input());
 
         Session::flash('data', $input);
 
         return view('items.show')
             ->with(['template' => $template]);
+    }
+
+    public function jaoaArticle(Request $request)
+    {
+      $input = $requets->input();
+
+      $template = $this->getViewTemplate('jaoa.article.blade.php', $request->input());
+
+      Session::flash('data', $input);
+
+      return view('items.show')
+          ->with(['template' => $template]);
     }
 }

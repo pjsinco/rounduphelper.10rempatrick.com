@@ -23,7 +23,9 @@ Route::get('/jaoa', function () {
     return view('jaoa');
 });
 
+// TODO used?
 Route::get('item/{type}', 'ItemsController@show');
+
 //Route::get('item/create', 'ItemsController@create');
 //Route::get('item/top-story', 'ItemsController@topStory');
 //Route::get('item/feature', 'ItemsController@feature');
@@ -34,4 +36,4 @@ Route::get('item/{type}', 'ItemsController@show');
 
 Route::get('form', 'FormsController@show');
 
-Route::get('render/{type}', 'RendersController@show');
+Route::get('render/{owner}/{type}', 'RendersController@show');

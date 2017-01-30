@@ -53,10 +53,11 @@ class FormsController extends Controller
                 ]);
                 break;
             case 'jaoa-article':
-                return view()->make('forms.jaoa.article', [
+                return view()->make('forms.jaoa.section-title', [
                     'action' => 'ItemsController@jaoaArticle'
                 ]);
                 break;
+            
         }
 
     }

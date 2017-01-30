@@ -10,15 +10,15 @@
             <div class="form-group">
                 <label for="articleType">Select component to create</label>
                 <select class="form-control input-lg" name="type" id="articleType">
-                    <optgroup label="Stories">
-                        <option value="top-story">Top story</option>
-                        <option value="feature" selected>Feature</option>
-                        <option value="brief">Brief</option>
+                    <optgroup label="Articles">
+                        <option value="jaoa-article" selected>Article</option>
+                        <option value="jaoa-article-first">Article in Series - First</option>
+                        <option value="jaoa-article-middle">Article in Series - Middle</option>
+                        <option value="jaoa-article-last">Article in Series - Last</option>
                     </optgroup>
                     <optgroup label="Other parts">
-                        <option value="quote">Quote</option>
-                        <option value="section-title">Section Title</option>
-                        <option value="date">Date</option>
+                        <option value="jaoa-banner">Banner</option>
+                        <option value="jaoa-intro">Intro</option>
                     </optgroup>
                 </select>
             </div>
