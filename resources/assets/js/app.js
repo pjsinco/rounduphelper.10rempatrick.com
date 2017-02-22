@@ -1,3 +1,7 @@
+$(function () {
+
+});
+
 if (typeof Object.assign != 'function') {
   Object.assign = function(target, varArgs) { // .length of function is 2
     'use strict';
@@ -47,14 +51,15 @@ var colorMap = {
 };
 
 var categoryColors = {
-  "Original Contributions": colorMap.purple,
+  "AOA Communication": colorMap.green,
+  "Original Contribution": colorMap.purple,
   "Reviews": colorMap.purple,
   "Evidence-Based Clinical Reviews": colorMap.purple,
   "Clinical Review": colorMap.purple,
   "Clinical Practice": colorMap.purple,
-  "Brief Reports": colorMap.purple,
+  "Brief Report": colorMap.purple,
   "Medical Education": colorMap.purple,
-  "Case Reports": colorMap.purple,
+  "Case Report": colorMap.purple,
   "Special Communication": colorMap.purple,
   "Special Report": colorMap.green,
   "Health Policy": colorMap.green,
@@ -84,19 +89,20 @@ $(document).ready(function() {
             data: vueData,
             methods: {
                 copyHtml: function() {
-                    this.collapseSelection('clone');
-                    this.cloneRenderedVersion();
-                    
-                    var range = document.createRange();
-                    var selection = document.querySelector('#clone');
-                    range.selectNode(selection);
-                    window.getSelection().addRange(range);
-                    var successful = document.execCommand('copy');
-                    var msg = successful ? 'successful' : 'not successful';
-                    console.log(msg);
-                    if (successful) {
-                        $('#highlight').effect('highlight', { color: 'lightyellow' }, 'slow');
+                  this.collapseSelection('clone');
+                  this.cloneRenderedVersion();
+
+                  var clipboard = new Clipboard('#copyHtml', {
+                    target: function(trigger) {
+                      return document.getElementById('clone');
                     }
+                  });
+
+                  clipboard.on('success', function(evt) {
+                    console.log('Copied!');
+                    $('#highlight').effect('highlight', { color: 'lightyellow' }, 'slow');
+                    clipboard.destroy();
+                  });
                 },
 
                 copyTextVersion: function(trigger) {
@@ -161,6 +167,18 @@ $(document).ready(function() {
                             ].join('\n');
                             
                             break;
+  
+                        case 'jaoa-article':
+                          return [
+                            vueData.cateogry,
+                            vueData.title.toUpperCase(),
+                            vueData.authors,
+                            '------------------------------------' +
+                                '------------------------------------',
+                            vueData.blurb,
+                            vueData.articleUrl,
+                            '',
+                          ].join('\n');
                     }
                 },
 
@@ -219,35 +237,32 @@ $(document).ready(function() {
         });
     };
 
-    function render() {
-        var selected = $('select#articleType').val();
-        var form = $('form#selectArticleType').serialize();
-        
-        // clear the cloned section
-        $('#workspace').fadeToggle(300, function() {
-            $('#clone').text('');
-            $('#highlight').html('');
-            $('#form').html('');
-
-            vueData = setVueData(selected);
-    
-            var request = getForm(form, selected),
-                chained = getRendered(selected);
-
-            chained.done(function() {
-                newVue(vueData);
-                clearInputs();
-                setArticleColors(vueData.category);
-                $('#workspace').delay(300).fadeToggle(300);
-            });
-        });
-    };
-
     function clearInputs() {
       // leave "More stories" in the input
       if ($('input').val() != 'More stories') {
           $('input, textarea').val('');
       }
+    }
+
+    /**
+     * http://stackoverflow.com/questions/1740700/
+     *   how-to-get-hex-color-value-rather-than-rgb-value
+     *
+     */
+    function rgb2Hex(rgb) {
+
+      if (rgb.search('rgb') == -1) {
+        return rgb;
+      }
+
+      rgb = rgb.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+))?\)$/);
+
+      function hex(x) {
+        return ("0" + parseInt(x).toString(16)).slice(-2);
+      }
+
+      return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+      
     }
 
     function setArticleColors(category) {
@@ -325,9 +340,9 @@ $(document).ready(function() {
              case 'jaoa-article' :
                 vueData = {
                   title: 'Lorem article title',
-                  category: 'Original Contributions',
+                  category: 'Original Contribution',
                   authors: 'Lorem authors',
-                  blurb: 'Lorem ipsum dolor blurb',
+                  blurb: '',
                   articleUrl: '',
                   imageUrl: '',
                 };
@@ -336,6 +351,39 @@ $(document).ready(function() {
 
         return vueData;
     };
+
+    function isJaoaArticle(term) {
+      return term.indexOf('jaoa-article') === 0;
+    }
+
+    function render() {
+        var selected = $('select#articleType').val();
+        var form = $('form#selectArticleType').serialize();
+
+        // clear the cloned section
+        $('#workspace').fadeToggle(300, function() {
+            $('#clone').text('');
+            $('#highlight').html('');
+            $('#form').html('');
+
+            vueData = setVueData(selected);
+    
+            var request = getForm(form, selected),
+                chained = getRendered(selected);
+
+            chained.done(function() {
+                newVue(vueData);
+                clearInputs();
+
+                if (isJaoaArticle(selected)) {
+                  setArticleColors(vueData.category);
+                }
+                
+                $('#workspace').delay(300).fadeToggle(300);
+            });
+        });
+    };
+
 
     $('select#articleType').change(render);
 

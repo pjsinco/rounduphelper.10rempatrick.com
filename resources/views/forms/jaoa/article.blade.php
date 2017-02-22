@@ -1,11 +1,9 @@
-        {{-- Form::open(['method' => 'GET', 'action' => $action]) --}}
-
             <div class="form-group">
                 {!! Form::label('category', 'Category') !!}
                 {!! Form::select('category', [
                   'Book Reviews' => "Book Reviews",
-                  'Brief Reports' => "Brief Reports",
-                  'Case Reports' => "Case Reports",
+                  'Brief Report' => "Brief Report",
+                  'Case Report' => "Case Report",
                   'Clinical Images' => "Clinical Images",
                   'Clinical Practice' => "Clinical Practice",
                   'Clinical Review' => "Clinical Review",
@@ -18,14 +16,14 @@
                   'In Your Words' => "In Your Words",
                   'Letters to the Editor' => "Letters to the Editor",
                   'Medical Education' => "Medical Education",
-                  'Original Contributions' => "Original Contributions",
-                  'Reviews' => "Reviews",
+                  'Original Contribution' => "Original Contribution",
+                  'Review' => "Review",
                   'The Somatic Connection' => "The Somatic Connection",
                   'Special Communication' => "Special Communication",
                   'Special Report' => "Special Report",
                   'Still Relevant?' => "Still Relevant?" ,
                   'Surf' => "SURF",
-                ], 'Original Contributions', ['v-model' => 'category', 'class' => 'form-control', 'v-on' => 'change: handleCategoryChange']) !!}
+                ], 'Original Contribution', ['v-model' => 'category', 'class' => 'form-control', 'v-on' => 'change: handleCategoryChange']) !!}
             </div>
 
             <div class="form-group">
@@ -36,6 +34,11 @@
             <div class="form-group">
                 {!! Form::label('authors', 'Authors') !!}
                 {!! Form::text('authors', null, ['class' => 'form-control', 'v-model' => 'authors']) !!}
+            </div>
+
+            <div class="form-group">
+                {!! Form::label('url', 'Article URL') !!}
+                {!! Form::text('url', null, ['class' => 'form-control', 'v-model' => 'articleUrl']) !!}
             </div>
 
             <div class="form-group">
@@ -63,7 +66,6 @@
                 <button class="btn btn-default" id="refresh"><span class="glyphicon glyphicon-refresh"></span> Reset</button>
                 <div class="btn-group pull-right">
                     <button class="btn btn-primary" id="copyHtml" v-on="click: copyHtml"><span class="glyphicon glyphicon-copy"></span> Copy HTML</button>
-                    <button class="btn btn-info" id="copyTextVersion" data-component="article" v-on="click: copyTextVersion"><span class="glyphicon glyphicon-copy"></span> Copy text</button>
+                    <button class="btn btn-info" id="copyTextVersion" data-component="jaoa-article" v-on="click: copyTextVersion"><span class="glyphicon glyphicon-copy"></span> Copy text</button>
                 </div>
             </div>
-        {{-- Form::close() --}}
