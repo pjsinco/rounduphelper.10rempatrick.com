@@ -1,6 +1,6 @@
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-
-$brandcolor: #ef3f23;
+@import 'variables';
+@import 'tooltipped';
 
 #rendered {
     text-align: center;
@@ -56,4 +56,25 @@ hr {
 
 .checkbox-inline > label:last-child {
     margin-left: 2em;
+}
+
+.image-group {
+  background: #f5f5f5;
+  margin-bottom: 1.25rem;
+  margin-top: 1.75rem;
+  padding: 1.25rem;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+  }
+}
+
+.show-transition {
+  transition: opacity .5s ease-in-out;
+}
+
+.show-enter, 
+.show-leave {
+  opacity: 0;
 }

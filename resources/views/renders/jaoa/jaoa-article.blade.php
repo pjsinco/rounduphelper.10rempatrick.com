@@ -37,6 +37,19 @@
                 <!-- ARTICLE BODY-->
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" align="center" style="border-left: 1px solid #cccccc; border-right: 1px solid #cccccc; border-bottom: 1px solid #cccccc;" class="wrapper">
                   <tbody>
+                    <tr v-if="imageSrc">
+                      <td class="padding-feature-image" style="padding-top: 20px; padding-bottom: 5px; padding-left: 0; padding-right: 0;" align="center">
+                        <table class="wrapper" border="0" cellpadding="0" cellspacing="0" width="480" align="center">
+                          <tr>
+                            <td>
+                              <a href="@{{ imageUrl ? imageUrl : articleUrl }}" style="text-decoration: none;" target="_blank">
+                                <img class="fluid-image" src="@{{ imageSrc }}" width="480" height="240" border="0" alt="@{{ imageAlt }}" style="display: block; padding: 0; color: #ffffff; font-family: Helvetica, arial, sans-serif; font-size: 16px;" />
+                              </a>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
                     <tr>
                       <td style="padding: 10px 0px 0px 0px;" align="center" class="padding-no-bottom">
                         <table border="0" cellpadding="0" cellspacing="0" width="480" align="center" class="wrapper">

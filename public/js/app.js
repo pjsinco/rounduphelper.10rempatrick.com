@@ -1,7 +1,4 @@
-$(function () {
-
-});
-
+// polyfill Object.assign
 if (typeof Object.assign != 'function') {
   Object.assign = function(target, varArgs) { // .length of function is 2
     'use strict';
@@ -100,7 +97,11 @@ $(document).ready(function() {
 
                   clipboard.on('success', function(evt) {
                     console.log('Copied!');
-                    $('#highlight').effect('highlight', { color: 'lightyellow' }, 'slow');
+                    $('#highlight').addClass('animated jello');
+                    $('#highlight').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+                      $(this).removeClass('animated jello');
+                    });
+                    $('#copyHtml').addClass('tooltipped tooltipped-w');
                     clipboard.destroy();
                   });
                 },
@@ -170,7 +171,7 @@ $(document).ready(function() {
   
                         case 'jaoa-article':
                           return [
-                            vueData.cateogry,
+                            vueData.category,
                             vueData.title.toUpperCase(),
                             vueData.authors,
                             '------------------------------------' +
@@ -205,7 +206,23 @@ $(document).ready(function() {
                 cloneRenderedVersion: function() {
                     var htmlVersion = document.getElementById('highlight');
                     $('#clone').text(htmlVersion.innerHTML);
-                }
+                },
+
+                onShowImageForm: function() {
+
+                  this.showImageForm = ! this.showImageForm;
+
+                  if (! this.showImageForm) {
+                    this.imageSrc = '';
+                    this.imageUrl = '';
+                    this.imageAlt = '';
+                  }
+                },
+
+                onMouseLeave: function() {
+                  $('#copyHtml').removeClass('tooltipped tooltipped-w');
+                },
+
             },
             ready: function() {
                 console.log('ready');
@@ -344,9 +361,12 @@ $(document).ready(function() {
                   authors: 'Lorem authors',
                   blurb: '',
                   articleUrl: '',
+                  imageSrc: '',
                   imageUrl: '',
+                  imageAlt: '',
                   free: false,
                   video: false,
+                  showImageForm: false,
                 };
                 break;
              case 'jaoa-banner' :

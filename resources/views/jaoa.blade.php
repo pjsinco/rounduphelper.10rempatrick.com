@@ -29,14 +29,14 @@
 
 
 <div class="row" id="workspace">
-    <div id="form" class="col-lg-6 col-md-12">
-    </div> <!-- #form -->
-    <div id="rendered" class="col-lg-6 col-md-12">
-        <div id="highlight">
-        </div>
-    </div> <!-- #rendered -->
-    <div id="clone" style="position: absolute; top: -5000px; left: -5000px">
+  <div id="form" class="col-lg-6 col-md-12">
+  </div> <!-- #form -->
+  <div id="rendered" class="col-lg-6 col-md-12">
+    <div id="highlight">
     </div>
+  </div> <!-- #rendered -->
+  <div id="clone" style="position: absolute; top: -5000px; left: -5000px">
+  </div>
 </div> <!-- .row -->
 
 

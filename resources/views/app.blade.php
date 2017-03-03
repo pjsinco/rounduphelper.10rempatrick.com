@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Roundup Helper</title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
         <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 

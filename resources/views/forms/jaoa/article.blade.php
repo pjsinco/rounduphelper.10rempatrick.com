@@ -26,6 +26,25 @@
                 ], 'Original Contribution', ['v-model' => 'category', 'class' => 'form-control', 'v-on' => 'change: handleCategoryChange']) !!}
             </div>
 
+            <div class="image-group" id="imageGroup" v-if="showImageForm" v-transition="show">
+              <h3>Image</h3>
+              <div class="form-group">
+                  {!! Form::label('imageSrc', 'Image URL') !!}
+                  {!! Form::text('imageSrc', null, ['class' => 'form-control', 'v-model' => 'imageSrc']) !!}
+                  <p class="help-block">Image size: 480px x 240px</p>
+              </div>
+
+              <div class="form-group">
+                  {!! Form::label('imageUrl', 'Image Link') !!}
+                  {!! Form::text('imageUrl', null, ['class' => 'form-control', 'v-model' => 'imageUrl']) !!}
+              </div>
+
+              <div class="form-group">
+                  {!! Form::label('imageAlt', 'Image Alt Text') !!}
+                  {!! Form::text('imageAlt', null, ['class' => 'form-control', 'v-model' => 'imageAlt']) !!}
+              </div>
+            </div>
+
             <div class="form-group">
                 {!! Form::label('title', 'Title') !!}
                 {!! Form::text('title', null, ['class' => 'form-control', 'v-model' => 'title']) !!}
@@ -49,19 +68,13 @@
             <div class="form-group">
                 <div class="checkbox-inline">
                     <label>
-                        <input type="checkbox" name="free" v-on="click: cloneRenderedVersion" v-model="free"> Free 
+                        <input type="checkbox" name="free" v-model="free"> Free 
                     </label>
                     <label>
-                        <input type="checkbox" name="video" v-on="click: cloneRenderedVersion" v-model="video"> Video
+                        <input type="checkbox" name="video" v-model="video"> Video
                     </label>
                 </div>
+                <button class="btn btn-default btn-xs pull-right" id="showImageForm" v-on="click: onShowImageForm">@{{ showImageForm ? 'Remove image' : 'Add image' }}</button>
             </div>
 
-            
-            <div class="form-group clearfix">
-                <button class="btn btn-default" id="refresh"><span class="glyphicon glyphicon-refresh"></span> Reset</button>
-                <div class="btn-group pull-right">
-                    <button class="btn btn-primary" id="copyHtml" v-on="click: copyHtml"><span class="glyphicon glyphicon-copy"></span> Copy HTML</button>
-                    <button class="btn btn-info" id="copyTextVersion" data-component="jaoa-article" v-on="click: copyTextVersion"><span class="glyphicon glyphicon-copy"></span> Copy text</button>
-                </div>
-            </div>
+            @include('forms.copy-buttons')
