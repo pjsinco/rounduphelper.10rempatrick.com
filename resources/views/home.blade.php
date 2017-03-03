@@ -11,7 +11,7 @@
       <a class="btn btn-info btn-large" href="/the-do">The DO</a>
     </div>
     <div class="col-xs-4">
-      <a class="btn btn-info btn-large" href="/the-do">JAOA</a>
+      <a class="btn btn-info btn-large" href="/jaoa">JAOA</a>
     </div>
 </div> <!-- .row -->
 <hr />

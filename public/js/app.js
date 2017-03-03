@@ -282,7 +282,7 @@ $(document).ready(function() {
                 '; font-size: 0;');
       
       $('#articleTitle')
-        .attr('style', 'text-decoration: none; font-family: "Raleway", Helvetica, arial, sans-serif; font-weight: 500; font-size: 22px; line-height: 28px; color: ' + color.full + ';');
+        .attr('style', "text-decoration: none; font-family: 'Raleway', Helvetica, arial, sans-serif; font-weight: 500; font-size: 22px; line-height: 28px; color: " + color.full + ';');
     }
 
     function setVueData(selected) {
@@ -345,6 +345,14 @@ $(document).ready(function() {
                   blurb: '',
                   articleUrl: '',
                   imageUrl: '',
+                  free: false,
+                  video: false,
+                };
+                break;
+             case 'jaoa-banner' :
+                vueData = {
+                  alt: 'Banner image',
+                  imageUrl: 'http://placehold.it/600x300',
                 };
                 break;
         }

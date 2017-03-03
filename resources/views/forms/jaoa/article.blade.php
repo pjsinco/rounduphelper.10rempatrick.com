@@ -46,20 +46,16 @@
                 {!! Form::textarea('blurb', null, ['class' => 'form-control', 'v-model' => 'blurb', 'rows' => '4']) !!}
             </div>
 
-            {{--
-            @if($ruleForm)
             <div class="form-group">
                 <div class="checkbox-inline">
                     <label>
-                        <input type="checkbox" name="rule_below" v-on="click: cloneRenderedVersion" v-model="ruleBelow"> Rule below
+                        <input type="checkbox" name="free" v-on="click: cloneRenderedVersion" v-model="free"> Free 
                     </label>
                     <label>
-                        <input type="checkbox" name="rule_above" v-on="click: cloneRenderedVersion" v-model="ruleAbove"> Rule above
+                        <input type="checkbox" name="video" v-on="click: cloneRenderedVersion" v-model="video"> Video
                     </label>
                 </div>
             </div>
-            @endif()
-            --}}
 
             
             <div class="form-group clearfix">

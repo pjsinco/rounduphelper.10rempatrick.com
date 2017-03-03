@@ -42,7 +42,16 @@
                         <table border="0" cellpadding="0" cellspacing="0" width="480" align="center" class="wrapper">
                           <tbody>
                             <tr>
-                              <td style="padding: 0px 0px 20px 0px;"><a id="articleTitle" href="@{{ articleUrl }}" style="text-decoration: none; font-family: 'Raleway', Helvetica, arial, sans-serif; font-weight: 500; font-size: 22px; line-height: 28px; color: #a464c5;" target="_blank" class="body-text">@{{ title }}</a></td>
+                              <td style="padding: 0px 0px 20px 0px;">
+                                <a id="articleTitle" href="@{{ articleUrl }}" style="text-decoration: none; font-family: 'Raleway', Helvetica, arial, sans-serif; font-weight: 500; font-size: 22px; line-height: 28px; color: #a464c5;" target="_blank" class="body-text">
+                                  @{{ title }}&nbsp;
+                                </a>
+                                <span v-if="free" style="padding: 3px 9px 3px 9px; vertical-align: bottom; font-family: Helvetica, Arial, sans-serif; font-weight: normal; font-size: 13px; line-height: 28px; letter-spacing: .5px; background-color: #E8F1FA; color: #4e98da;">&nbsp;FREE&nbsp;</span>
+                                </span>
+                                <span v-if="free">&nbsp;</span>
+                                <span v-if="video" style="padding: 3px 9px 3px 9px; vertical-align: bottom; font-family: Helvetica, Arial, sans-serif; font-weight: normal; font-size: 13px; line-height: 28px; letter-spacing: .5px; background-color: #FDE9E6; color: #f26046;">&nbsp;VIDEO&nbsp;</span>
+                                </span>
+                              </td>
                             </tr>
                             <tr>
                               <td style="padding: 0px 0px 20px 0px; font-family: 'Roboto', Helvetica, Arial, sans-serif; font-weight: normal; font-size: 14px; text-align: left; line-height: 18px; color: #909090;" class="body-text">@{{ authors }}</td>

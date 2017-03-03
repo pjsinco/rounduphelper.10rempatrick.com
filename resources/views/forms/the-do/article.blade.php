@@ -1,5 +1,3 @@
-        {{-- Form::open(['method' => 'GET', 'action' => $action]) --}}
-
             <div class="form-group">
                 {!! Form::label('kicker', 'Kicker') !!}
                 {!! Form::text('kicker', null, ['class' => 'form-control', 'v-model' => 'kicker']) !!}
@@ -46,4 +44,3 @@
                     <button class="btn btn-info" id="copyTextVersion" data-component="article" v-on="click: copyTextVersion"><span class="glyphicon glyphicon-copy"></span> Copy text</button>
                 </div>
             </div>
-        {{-- Form::close() --}}
