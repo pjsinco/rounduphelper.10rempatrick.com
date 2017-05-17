@@ -13,7 +13,8 @@ $(document).ready(function() {
                     
                     var range = document.createRange();
                     var selection = document.querySelector('#clone');
-                    range.selectNode(selection)
+                    range.selectNode(selection);
+                    window.getSelection().removeAllRanges();
                     window.getSelection().addRange(range);
                     var successful = document.execCommand('copy');
                     var msg = successful ? 'successful' : 'not successful';
@@ -121,7 +122,7 @@ $(document).ready(function() {
                 $('#form').html(data);
                 console.log('got form');
             }
-        })
+        });
     };
 
     function getRendered(selected) {
